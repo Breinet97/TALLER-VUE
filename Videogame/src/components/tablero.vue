@@ -38,7 +38,7 @@ onMounted(() => {
 }
 
 .cuadrado {
-    width: 50px;
+    /* width: 50px; */
     height: 50px;
     /* padding: 2rem; */
     display: flex;
