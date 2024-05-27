@@ -24,7 +24,7 @@ const props = defineProps({
 <template>
     <!-- aplica el estilo solo si  -->
     <section class="cuadrado" 
-    :class="{ 'cuadrado': true, 'cuadrado-one': id === 5 , 'cuadrado-two': id === 77}">
+    :class="{ 'cuadrado': true, 'cuadrado-one': id === positionPlayerOne , 'cuadrado-two': id === positionPlayerTwo}">
     <!-- tener en cuenta que para traer valores de otro componente estos tienen que llamarse igual al que puse en el v-bind :playerId por ejemplo debe coincidir con el prop  -->
 
         <!-- solo se renderiza si  -->

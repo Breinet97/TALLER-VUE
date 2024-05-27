@@ -1,0 +1,20 @@
+mira esta es mi mayor momentos ezquizofrenico asi que quiero dejar constancia de ello JASJDJSAD
+y de como funciona esta webada
+
+y antes de que se me olvide esto xd 
+Tenemos un tablero
+este tiene su estilo osea ser un tablero xd
+este llama a cuadrado pero lo que hacemos es que tenemos un componente llamado cuadrado tiene su estilo y tales.
+lo creamos 81 veces y esa 81 veces tiene su propio id caractersitico del for
+entonces tenemos ese mismo cuadrado pero 81 veces, eso lo ahce dinamico supongo no se
+
+entonces lo que hacemos es identificar la posicion inicial de mis dos players mediante estos id 
+en concreto el id 5 y el 77 para que arraquen en la mitad.
+para que cuadrado sepa donde deben arrancar estos le enviamos mediante el metodo de VUE defineProps
+donde lo que hacemos es enviar esos id y que podamos hace un v-if en caso de que la posicion del jugador coincida
+ahora bien ese cuadrado llama player hicimos es v-if que hace que solo se renderice en esas posiciones, (luego miramos como hacer mover esa vaina xd)
+
+y tambien en ese v-if ponemos un id 1 y 2 para identificar el juagdor y en el componente player le damos estilos a cada uno segun su id asi logramos diferenciar al jkuagdor esto mediante el v-bind:class 
+que si le ponemos 
+{ } ---  actua como si fuera un if y le enviamos los id que le puse en el v-id del componente cuadrado para que asi me reconozca los cuadrados y logre diferencia de estilos 
+FIN DE MOMENTO XD
