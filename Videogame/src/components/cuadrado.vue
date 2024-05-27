@@ -2,11 +2,8 @@
 
 import Player from './player.vue';
 
-import { defineProps } from 'vue';
 
-// posicion inicial de los dos jugadores 
-const positionPlayerOne=5;
-const positionPlayerTwo=77;
+import { defineProps } from 'vue';
 
 // lo que voy a hacer es traerme a i para poder cambiar el valor de esos cuadrados con un if 
 
@@ -16,15 +13,39 @@ const props = defineProps({
         type: Number,
         // lo que required no entiendo pa que xd 
         required: true
+    },
+    // posicion inicial de los jugadores para que sean renderizados
+    // estos vienen desde tablero 
+    positionPlayerOne:{
+        type:Number,
+        required:true
+    },
+    positionPlayerTwo:{
+        type:Number,
+        required:true
     }
 });
 
-</script>
+// REVISAR FUNCION MOVIMIENTO 
+const emits = defineEmits(['movePlayer']);
 
+const handleMove = (player) => {
+
+  // Aquí puedes definir la nueva posición. Por ahora solo muevo a la siguiente casilla.
+  const newPosition = props.id + 1; // Mover al siguiente cuadrado
+  emits('movePlayer', player, newPosition);
+};
+
+</script>
 <template>
     <!-- aplica el estilo solo si  -->
+
+    <!-- REVISAR FUNCION DE MOVIMIENTO  -->
     <section class="cuadrado" 
-    :class="{ 'cuadrado': true, 'cuadrado-one': id === positionPlayerOne , 'cuadrado-two': id === positionPlayerTwo}">
+    :class="{ 'cuadrado': true, 'cuadrado-one': id === positionPlayerOne , 'cuadrado-two': id === positionPlayerTwo}"
+
+    @click="id === positionPlayerOne ? handleMove(1) : id === positionPlayerTwo ? handleMove(2) : null">
+
     <!-- tener en cuenta que para traer valores de otro componente estos tienen que llamarse igual al que puse en el v-bind :playerId por ejemplo debe coincidir con el prop  -->
 
         <!-- solo se renderiza si  -->
