@@ -1,40 +1,36 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
 
-    import Player from './player.vue';
+import Player from './player.vue';
 
-    // arreglo para el tablero 
-    const cuadrados = ref([]);
+import { defineProps } from 'vue';
 
-    // posicion inicial de los jugadores en los cuadrados 
-    const playerOnePosition = 5;
-    const playerTwoPosition = 77;
+// posicion inicial de los dos jugadores 
+const positionPlayerOne=5;
+const positionPlayerTwo=77;
 
-    // for para crear el componente del cuadrado 9*9
-    onMounted(() => {
-        for (let i = 0; i < 81; i++) {
-            // mientras esta creando los cuadrados debe verificar si es la posicion incial de cada jugador, si llega hacerlo agrega al jugador a esa posicion PERO SI NO 
-            // sigue creando los cuadrados 
+// lo que voy a hacer es traerme a i para poder cambiar el valor de esos cuadrados con un if 
 
-            if(i === playerOnePosition || i === playerTwoPosition){
-                cuadrados.value.push(
-                    {
-                        player: i === playerOnePosition? 1:2
-                    }
-                )
-            }else{
-                cuadrados.value.push({player:null});
-            }
-        }
-    });
+const props = defineProps({
+    // aqui estaran las id que necesito para modificar el color 
+    id: {
+        type: Number,
+        // lo que required no entiendo pa que xd 
+        required: true
+    }
+});
+
 </script>
 
 <template>
+    <!-- aplica el estilo solo si  -->
     <section class="cuadrado" 
-            v-for="(cuadrado, index) in cuadrados" 
-            :key="index"
-            >
-            <Player/>
+    :class="{ 'cuadrado': true, 'cuadrado-one': id === 5 , 'cuadrado-two': id === 77}">
+    <!-- tener en cuenta que para traer valores de otro componente estos tienen que llamarse igual al que puse en el v-bind :playerId por ejemplo debe coincidir con el prop  -->
+
+        <!-- solo se renderiza si  -->
+        <Player :playerId=1 v-if="id === positionPlayerOne"/>
+        <!-- id que identifica cada una para luego estilizarlo  -->
+        <Player :playerId=2 v-if="id === positionPlayerTwo"/>
     </section>
 </template>
 
@@ -42,10 +38,9 @@
 .cuadrado {
     /* 
     para reconocer el turno dle jugador lo que haremos es un truco:
-    sabremos que pulsan teniendo simbolos y encima la imagen, asi sabre el turno y ganador  */
-
-    position: relative;
-
+    sabremos que pulsan teniendo simbolos y encima la imagen, asi sabre el turno y ganador 
+    */
+    /* position: relative; */
     height: 80px;
     display: flex;
     justify-content: center;
@@ -53,5 +48,22 @@
     border: 5px solid black;
     background-color: rgba(0, 0, 0, 0.699);
     font-size: 18px;
+  
+}
+
+.cuadrado:hover {
+    background-color: aqua;
+    transform: translate(10px, -10px);
+}
+.cuadrado:active {
+    background-color: red;
+}
+
+.cuadrado-one {
+    background-color: orange;
+}
+
+.cuadrado-two {
+    background-color: blueviolet;
 }
 </style>

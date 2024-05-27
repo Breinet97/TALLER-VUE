@@ -1,46 +1,38 @@
 <script setup>
 
-import { ref, computed } from 'vue';
-
 const props = defineProps({
-    player:{
+    // aqui estaran las id que necesito para modificar el color 
+    playerId: {
         type: Number,
-        default: null
+        // lo que required no entiendo pa que xd 
+        required: true
     }
-})
-
-// Clase CSS para el color del jugador
-const playerClass = computed(() => {
-  return props.player === 1 ? 'playerOne' : (props.player === 2 ? 'playerTwo' : '');
 });
-
-
-
 </script>
 <template>
-    <section class="field" :class="playerClass">
-        
-    </section>
+  <!-- cada jugador tiene un id independiente asi logro ponerle estilos diferentes a cada uno -->
+  <section 
+  :class="{ 'player': true, 'player-one': playerId === 1 , 'player-two': playerId === 2}">
+  </section>
 
 </template>
 <style scoped>
-.field {
-    position: absolute;
-    background-color: red;
-    width: 75px;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.player {
+  width: 90%;
+  height: 100%;
+  /* position: absolute; */
+}
+.player-one {
+  background: url(../assets/images/Kirby-Player.png);
+  background-position: center;
+  background-size: cover;
 }
 
-.playerOne {
-  background-color: blue;
+.player-two {
+ 
+  background: url(../assets/images/Toad-Player.png);
+  background-position: center;
+  background-size: cover;
+
 }
-
-.playerTwo {
-  background-color: orange;
-
-}
-
 </style>
