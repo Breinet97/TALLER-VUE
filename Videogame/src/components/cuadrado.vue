@@ -24,68 +24,13 @@ const props = defineProps({
         type: Number,
         required: true
     },
-    // clickPlayer:{
-    //     type:Number,
-    //     required: true
-    // }
 });
-
-
-// REVISAR FUNCION MOVIMIENTO 
-
-// evento de movimiento 
-const eventMove = defineEmits(['movePlayer']);
-
-// manejar el movimiento del jugador 
-// obtiene como parametro al jugador y en base a eso creamos una nueva posicion para nuestro cuadrado
-const handleMove = (player) => {
-
-
-    // let newPosition = props.id + 1; 
-    let newPositionFinal = props.id + 1;
-    
-    // let newPositionFinal;
-
-    // let positionPlayer = props.id;
-
-    // console.log("posicion jugador"+positionPlayer);
-    // console.log("Props click"+props.clickPlayer);
-
-
-    // let nextCuadrado = props.id + 9;
-    // let leftCuadrado = props.id + 1;
-    // let rightCuadrado = props.id -1;
-
-
-    // debemos comparar si el cuadrado cliqueado es el que esta adelante en ese caso si me cambia la posicion 
-
-    // if (props.clickPlayer === "ojito") {
-    //     newPosition = props.clickPlayer; // Mover hacia adelante (9 casillas)
-    // } else if (props.direction === 'izquierda') {
-    //     newPosition = props.clickPlayer; // Mover hacia la izquierda (1 casilla)
-    // } else if (props.direction === 'derecha') {
-    //     newPosition = props.clickPlayer; // Mover hacia la derecha (1 casilla)
-    // } else {
-    //     // Dirección no válida
-    //     console.log('Dirección no válida');
-    //     return;
-    // }
-    // eventMove es una funcion para generar el evento de movimiento que llama a movePlayer que esta en tablero para lograr generar la nueva posicion 
-    // esta funciona llamando a la funcion, luego la posicion actual del jugador y por ultimo dandole la nueva posicion
-    eventMove('movePlayer', player, newPositionFinal);
-};
-
 </script>
 <template>
     <!-- aplica el estilo solo si  -->
-
-    <!-- REVISAR FUNCION DE MOVIMIENTO  -->
     <section class="cuadrado"
-        :class="{ 'cuadrado': true, 'cuadrado-one': id === positionPlayerOne, 'cuadrado-two': id === positionPlayerTwo }"
-        @click="id === positionPlayerOne ? handleMove(1) : id === positionPlayerTwo ? handleMove(2) : null">
-
+        :class="{ 'cuadrado': true, 'cuadrado-one': id === positionPlayerOne, 'cuadrado-two': id === positionPlayerTwo }">
         <!-- tener en cuenta que para traer valores de otro componente estos tienen que llamarse igual al que puse en el v-bind :playerId por ejemplo debe coincidir con el prop  -->
-
         <!-- solo se renderiza si  -->
         <Player :playerId=1 v-if="id === positionPlayerOne" />
         <!-- id que identifica cada una para luego estilizarlo  -->
